@@ -5,10 +5,7 @@ class Shop {
     this.updater = new Updater();
   }
   updateQuality() {
-    for (let item of this.items) {
-      this.updater.setItem(item).update();
-    }
-    return this.items;
+      return this.items.map(item => this.updater.setItem(item).update())
   }
 }
 module.exports = {

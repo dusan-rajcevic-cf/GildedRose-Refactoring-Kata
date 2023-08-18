@@ -44,7 +44,7 @@ class Updater {
                 this.item.quality = Math.min(this.item.quality + this.backStage(), MAX);
                 break;
             case SULFURAS:
-                return;
+                return this.item;
             case CONJURED:
                 this.item.quality = Math.max(this.item.quality + (2 * this.normalFactor()), MIN)
                 break;
@@ -53,6 +53,7 @@ class Updater {
         }
 
         this.item.sellIn -= 1;
+        return this.item;
     }
 }
 
