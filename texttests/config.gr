@@ -35,4 +35,7 @@ diff_program:meld
 #executable:${TEXTTEST_HOME}/julia/texttest_fixture.jl
 #interpreter:julia
 
+executable:${TEXTTEST_HOME}/js-jest/texttest_fixture.js
+interpreter:node
+
 filename_convention_scheme:standard

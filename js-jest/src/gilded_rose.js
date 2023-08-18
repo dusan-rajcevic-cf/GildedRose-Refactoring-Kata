@@ -1,10 +1,7 @@
-class Item {
-  constructor(name, sellIn, quality){
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
-}
+const {Item, AGED_BRIE, BACKSTAGE_PASSES, SULFURAS, CONJURED} = require('./item.js');
+
+const MIN = 0;
+const MAX = 50;
 
 class Shop {
   constructor(items=[]){
@@ -18,79 +15,80 @@ class Shop {
     return this.items;
   }
 
+  normalItem(item) {
+    let factor = -1;
+    if (item.sellIn <= 0) {
+      factor = -2;
+    }
+    item.quality = Math.max(item.quality + factor, MIN)
+  }
+
+  conjuredItem(item) {
+    let factor = -2;
+    if (item.sellIn <= 0) {
+      factor = -4;
+    }
+    item.quality = Math.max(item.quality + factor, MIN)
+  }
+
+  agedBrieItem(item) {
+    let factor = 1;
+    if (item.sellIn <= 0) {
+      factor = 2;
+    }
+    item.quality = Math.min(item.quality + factor, MAX)
+  }
+
+  backStage(item) {
+    let factor = 1;
+    switch (true) {
+      case item.sellIn > 10:
+        break;
+      case item.sellIn > 5:
+        factor = 2;
+        break;
+      case item.sellIn > 0:
+        factor = 3;
+        break;
+      default:
+        factor = -item.quality;
+    }
+    item.quality = Math.min(item.quality + factor, MAX);
+  }
+
   update(item) {
-    if (this.isConjured(item)) {
-      if (item.quality - 2 >= 0) {
-        item.quality = item.quality - 2;
-      } else {
-        item.quality = 0;
-      }
+    switch (item.name) {
+      case AGED_BRIE:
+        this.agedBrieItem(item);
+        break;
+      case BACKSTAGE_PASSES:
+        this.backStage(item);
+        break;
+      case SULFURAS:
+        return;
+      case CONJURED:
+        this.conjuredItem(item);
+        break;
+      default:
+        this.normalItem(item);
     }
-    if (!this.isAgedBrie(item) && !this.isBackstage(item) && !this.isConjured(item)) {
-      if (item.quality > 0) {
-        if (!this.isSulfuras(item)) {
-          item.quality = item.quality - 1;
-        }
-      }
-    } else if (!this.isConjured(item)) {
-      if (item.quality < 50) {
-        item.quality = item.quality + 1;
-        if (this.isBackstage(item)) {
-          if (item.sellIn < 11) {
-            if (item.quality < 50) {
-              item.quality = item.quality + 1;
-            }
-          }
-          if (item.sellIn < 6) {
-            if (item.quality < 50) {
-              item.quality = item.quality + 1;
-            }
-          }
-        }
-      }
-    }
-    if (!this.isSulfuras(item)) {
-      item.sellIn = item.sellIn - 1;
-    }
-    if (item.sellIn < 0) {
-      if (this.isConjured(item)) {
-        if (item.quality - 2 >= 0) {
-          item.quality = item.quality - 2;
-        } else {
-          item.quality = 0;
-        }
-      } else if (!this.isAgedBrie(item)) {
-        if (!this.isBackstage(item)) {
-          if (item.quality > 0) {
-            if (!this.isSulfuras(item)) {
-              item.quality = item.quality - 1;
-            }
-          }
-        } else {
-          item.quality = item.quality - item.quality;
-        }
-      } else {
-        if (item.quality < 50) {
-          item.quality = item.quality + 1;
-        }
-      }
-    }
+
+    item.sellIn -= 1;
   }
   isAgedBrie(item) {
-    return item.name === 'Aged Brie';
+    return item.name === AGED_BRIE;
   }
   isBackstage(item) {
-    return item.name === 'Backstage passes to a TAFKAL80ETC concert'
+    return item.name === BACKSTAGE_PASSES
   }
   isSulfuras(item) {
-    return item.name === 'Sulfuras, Hand of Ragnaros';
+    return item.name === SULFURAS;
   }
   isConjured(item) {
-    return item.name === 'Conjured Mana Cake';
+    return item.name === CONJURED;
   }
 }
 
 module.exports = {
-  Item,
   Shop
 }

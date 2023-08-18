@@ -1,4 +1,5 @@
-const {Shop, Item} = require("../src/gilded_rose");
+const {Shop} = require("../src/gilded_rose");
+const {Item} = require("../src/item");
 const AGED_BRIE = "Aged Brie";
 describe("Aged Brie", function() {
   it("should increase in quality by 1 before sell in day", function() {

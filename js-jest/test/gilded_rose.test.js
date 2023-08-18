@@ -1,4 +1,5 @@
-const {Shop, Item} = require("../src/gilded_rose");
+const {Shop} = require("../src/gilded_rose");
+const {Item} = require("../src/item");
 const expected = `OMGHAI!
 
 -------- day 0 --------
