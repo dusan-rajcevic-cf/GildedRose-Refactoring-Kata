@@ -72,6 +72,19 @@ class Shop {
 
     return this.items;
   }
+
+  isAgedBrie(item) {
+    return item.name === 'Aged Brie';
+  }
+  isBackstage(item) {
+    return item.name === 'Backstage passes to a TAFKAL80ETC concert'
+  }
+  isSulfuras(item) {
+    return item.name === 'Sulfuras, Hand of Ragnaros';
+  }
+  isConjured(item) {
+    return item.name === 'Conjured Mana Cake';
+  }
 }
 
 module.exports = {
