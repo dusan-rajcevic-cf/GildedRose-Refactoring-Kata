@@ -1,4 +1,4 @@
-const {Shop} = require('../src/gilded_rose');
+const GildedRose = require('../src/GildedRose');
 const {Item} = require('../src/Item');
 
 const items = [
@@ -10,13 +10,11 @@ const items = [
   new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20),
   new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49),
   new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-
-  // This Conjured item does not work properly yet
   new Item('Conjured Mana Cake', 3, 6),
 ];
 
 const days = Number(process.argv[2]) || 2;
-const gildedRose = new Shop(items);
+const gildedRose = new GildedRose(items);
 
 console.log('OMGHAI!');
 for (let day = 0; day < days + 1; day++) {
