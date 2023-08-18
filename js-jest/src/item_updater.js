@@ -10,6 +10,6 @@ const map = {
   'Sulfuras, Hand of Ragnaros': Sulfuras,
   'Conjured Mana Cake': Conjured
 }
-module.exports = function (item) {
+module.exports = (item) => {
   return map[item.name] !== undefined ? new map[item.name](item) : new NormalItem(item);
 }
