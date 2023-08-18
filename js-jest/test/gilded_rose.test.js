@@ -1,5 +1,5 @@
-const {Shop} = require("../src/gilded_rose");
-const {Item} = require("../src/item");
+const {Shop} = require('../src/gilded_rose');
+const {Item} = require('../src/Item');
 const expected = `OMGHAI!
 
 -------- day 0 --------
@@ -122,35 +122,35 @@ Backstage passes to a TAFKAL80ETC concert, 1, 50
 Backstage passes to a TAFKAL80ETC concert, -4, 0
 Conjured Mana Cake, -6, 0`;
 
-describe("Gilded Rose", function() {
-  it("should foo", function() {
-    const gildedRose = new Shop([new Item("foo", 0, 0)]);
+describe('Gilded Rose', function () {
+  it('should foo', function () {
+    const gildedRose = new Shop([new Item('foo', 0, 0)]);
     const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("foo");
+    expect(items[0].name).toBe('foo');
   });
 
-  it("should pass for all off the items", function() {
+  it('should pass for all off the items', function () {
     const items = [
-      new Item("+5 Dexterity Vest", 10, 20),
-      new Item("Aged Brie", 2, 0),
-      new Item("Elixir of the Mongoose", 5, 7),
-      new Item("Sulfuras, Hand of Ragnaros", 0, 80),
-      new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-      new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-      new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+      new Item('+5 Dexterity Vest', 10, 20),
+      new Item('Aged Brie', 2, 0),
+      new Item('Elixir of the Mongoose', 5, 7),
+      new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+      new Item('Sulfuras, Hand of Ragnaros', -1, 80),
+      new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20),
+      new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49),
+      new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
 
       // This Conjured item does not work properly yet
-      new Item("Conjured Mana Cake", 3, 6),
+      new Item('Conjured Mana Cake', 3, 6),
     ];
 
     const days = 10;
     const gildedRose = new Shop(items);
 
-    let output = "OMGHAI!";
+    let output = 'OMGHAI!';
     for (let day = 0; day < days; day++) {
       output += `\n\n-------- day ${day} --------`;
-      output += "\nname, sellIn, quality";
+      output += '\nname, sellIn, quality';
       items.forEach(item => output += `\n${item.name}, ${item.sellIn}, ${item.quality}`);
       gildedRose.updateQuality();
     }

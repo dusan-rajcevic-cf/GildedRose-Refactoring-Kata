@@ -1,9 +1,9 @@
-const {Shop} = require("../src/gilded_rose");
-const {Item} = require("../src/item");
-const SULFURAS = "Sulfuras, Hand of Ragnaros";
+const {Shop} = require('../src/gilded_rose');
+const {Item} = require('../src/Item');
+const SULFURAS = 'Sulfuras, Hand of Ragnaros';
 
-describe("Sulfuras - legendary item", function() {
-  it("should never change", function() {
+describe('Sulfuras - legendary item', function () {
+  it('should never change', function () {
     for (let day = 11; day > -2; day--) {
       const sellIn = day;
       const quality = 10;

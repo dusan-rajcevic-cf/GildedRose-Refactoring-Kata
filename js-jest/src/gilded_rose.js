@@ -1,13 +1,16 @@
-const {Updater} = require('./updater.js');
+const updaterFactory = require('./updater_factory');
+
 class Shop {
-  constructor(items){
+  constructor(items) {
     this.items = items;
-    this.updater = new Updater();
   }
+
   updateQuality() {
-      return this.items.map(item => this.updater.setItem(item).update())
+    this.items.forEach(item => updaterFactory(item).update())
+    return this.items;
   }
 }
+
 module.exports = {
   Shop
 }

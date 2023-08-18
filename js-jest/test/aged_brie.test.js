@@ -1,8 +1,8 @@
-const {Shop} = require("../src/gilded_rose");
-const {Item} = require("../src/item");
-const AGED_BRIE = "Aged Brie";
-describe("Aged Brie", function() {
-  it("should increase in quality by 1 before sell in day", function() {
+const {Shop} = require('../src/gilded_rose');
+const {Item} = require('../src/Item');
+const AGED_BRIE = 'Aged Brie';
+describe('Aged Brie', function () {
+  it('should increase in quality by 1 before sell in day', function () {
     for (let day = 11; day > 0; day--) {
       const sellIn = day;
       const quality = 1;
@@ -12,7 +12,7 @@ describe("Aged Brie", function() {
     }
   });
 
-  it("should increase in quality by 2 after sell in day", function() {
+  it('should increase in quality by 2 after sell in day', function () {
     const sellIn = 0;
     const quality = 1;
     const gildedRose = new Shop([new Item(AGED_BRIE, sellIn, quality)]);
@@ -20,7 +20,7 @@ describe("Aged Brie", function() {
     expect(items[0]).toEqual(new Item(AGED_BRIE, sellIn - 1, quality + 2));
   });
 
-  it("should not go over 50", function() {
+  it('should not go over 50', function () {
     for (let day = 1; day > -1; day--) {
       const sellIn = day;
       const quality50 = 50;

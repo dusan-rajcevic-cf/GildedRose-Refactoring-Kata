@@ -1,9 +1,9 @@
-const {Shop} = require("../src/gilded_rose");
-const {Item} = require("../src/item");
-const BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+const {Shop} = require('../src/gilded_rose');
+const {Item} = require('../src/Item');
+const BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
 
-describe("Backstage passes", function() {
-  it("should increase in quality by 1 if sell in day is greater than 10 days", function() {
+describe('Backstage passes', function () {
+  it('should increase in quality by 1 if sell in day is greater than 10 days', function () {
     const sellIn = 11;
     const quality = 1;
     const gildedRose = new Shop([new Item(BACKSTAGE, sellIn, quality)]);
@@ -11,7 +11,7 @@ describe("Backstage passes", function() {
     expect(items[0]).toEqual(new Item(BACKSTAGE, sellIn - 1, quality + 1));
   });
 
-  it("should increase in quality by 2 if sell in day is between 6 and 10 days", function() {
+  it('should increase in quality by 2 if sell in day is between 6 and 10 days', function () {
     for (let day = 10; day > 5; day--) {
       const sellIn = day;
       const quality = 1;
@@ -21,7 +21,7 @@ describe("Backstage passes", function() {
     }
   });
 
-  it("should increase in quality by 3 if sell in day is between 1 and 5 days", function() {
+  it('should increase in quality by 3 if sell in day is between 1 and 5 days', function () {
     for (let day = 5; day > 0; day--) {
       const sellIn = day;
       const quality = 1;
@@ -31,7 +31,7 @@ describe("Backstage passes", function() {
     }
   });
 
-  it("should set quality to 0 after concert", function() {
+  it('should set quality to 0 after concert', function () {
     const sellIn = 0;
     const quality = 1;
     const gildedRose = new Shop([new Item(BACKSTAGE, sellIn, quality)]);
@@ -39,7 +39,7 @@ describe("Backstage passes", function() {
     expect(items[0]).toEqual(new Item(BACKSTAGE, sellIn - 1, 0))
   });
 
-  it("should not go in quality over 50", function() {
+  it('should not go in quality over 50', function () {
     for (let day = 11; day > -1; day--) {
       const sellIn = 11;
       const quality50 = 50;
