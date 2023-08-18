@@ -11,60 +11,60 @@ class Shop {
     this.items = items;
   }
   updateQuality() {
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.isConjured(this.items[i])) {
-        if (this.items[i].quality - 2 >= 0) {
-          this.items[i].quality = this.items[i].quality - 2;
+    for (let item of this.items) {
+      if (this.isConjured(item)) {
+        if (item.quality - 2 >= 0) {
+          item.quality = item.quality - 2;
         } else {
-          this.items[i].quality = 0;
+          item.quality = 0;
         }
       }
-      if (!this.isAgedBrie(this.items[i]) && !this.isBackstage(this.items[i]) && !this.isConjured(this.items[i])) {
-        if (this.items[i].quality > 0) {
-          if (!this.isSulfuras(this.items[i])) {
-            this.items[i].quality = this.items[i].quality - 1;
+      if (!this.isAgedBrie(item) && !this.isBackstage(item) && !this.isConjured(item)) {
+        if (item.quality > 0) {
+          if (!this.isSulfuras(item)) {
+            item.quality = item.quality - 1;
           }
         }
-      } else if (!this.isConjured(this.items[i])) {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.isBackstage(this.items[i])) {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
+      } else if (!this.isConjured(item)) {
+        if (item.quality < 50) {
+          item.quality = item.quality + 1;
+          if (this.isBackstage(item)) {
+            if (item.sellIn < 11) {
+              if (item.quality < 50) {
+                item.quality = item.quality + 1;
               }
             }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
+            if (item.sellIn < 6) {
+              if (item.quality < 50) {
+                item.quality = item.quality + 1;
               }
             }
           }
         }
       }
-      if (!this.isSulfuras(this.items[i])) {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+      if (!this.isSulfuras(item)) {
+        item.sellIn = item.sellIn - 1;
       }
-      if (this.items[i].sellIn < 0) {
-        if (this.isConjured(this.items[i])) {
-          if (this.items[i].quality - 2 >= 0) {
-            this.items[i].quality = this.items[i].quality - 2;
+      if (item.sellIn < 0) {
+        if (this.isConjured(item)) {
+          if (item.quality - 2 >= 0) {
+            item.quality = item.quality - 2;
           } else {
-            this.items[i].quality = 0;
+            item.quality = 0;
           }
-        } else if (!this.isAgedBrie(this.items[i])) {
-          if (!this.isBackstage(this.items[i])) {
-            if (this.items[i].quality > 0) {
-              if (!this.isSulfuras(this.items[i])) {
-                this.items[i].quality = this.items[i].quality - 1;
+        } else if (!this.isAgedBrie(item)) {
+          if (!this.isBackstage(item)) {
+            if (item.quality > 0) {
+              if (!this.isSulfuras(item)) {
+                item.quality = item.quality - 1;
               }
             }
           } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
+            item.quality = item.quality - item.quality;
           }
         } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
+          if (item.quality < 50) {
+            item.quality = item.quality + 1;
           }
         }
       }
