@@ -14,7 +14,7 @@ describe('🧺 Item', function () {
 
   it('should decrease in quality by 2 after sell in day', function () {
     const sellIn = -1;
-    const quality = 5
+    const quality = 5;
     const item = addAndUpdateItem(ITEM, sellIn, quality);
     expect(item).toEqual(new Item(ITEM, sellIn - 1, quality - 2));
   });
