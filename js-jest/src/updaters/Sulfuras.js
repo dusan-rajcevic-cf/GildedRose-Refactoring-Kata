@@ -1,7 +1,12 @@
 const Updater = require('./Updater');
 
 class Sulfuras extends Updater {
-  update() {
+  quality() {
+    return 0;
+  }
+
+  sellIn() {
+    return 0;
   }
 }
 

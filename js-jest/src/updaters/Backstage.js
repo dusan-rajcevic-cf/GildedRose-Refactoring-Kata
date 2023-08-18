@@ -1,26 +1,17 @@
 const Updater = require('./Updater');
 
 class Backstage extends Updater {
-  update() {
-    this.item.quality = Math.min(this.item.quality + this.factor(), this.max);
-    this.item.sellIn -= 1;
-  }
-
-  factor() {
-    let factor = 1;
-    switch (true) {
-      case this.item.sellIn > 10:
-        break;
-      case this.item.sellIn > 5:
-        factor = 2;
-        break;
-      case this.item.sellIn > 0:
-        factor = 3;
-        break;
-      default:
-        factor = -this.item.quality;
+  quality() {
+    if (this.item.sellIn > 10) {
+      return 1;
     }
-    return factor;
+    if (this.item.sellIn > 5) {
+      return 2;
+    }
+    if (this.item.sellIn > 0) {
+      return 3;
+    }
+    return -this.item.quality;
   }
 }
 
