@@ -1,4 +1,4 @@
-const itemUpdater = require('./item_updater');
+const updaterFactory = require('./updater_factory');
 
 class GildedRose {
   constructor(items) {
@@ -6,7 +6,7 @@ class GildedRose {
   }
 
   updateQuality() {
-    this.items.forEach(item => itemUpdater(item).update())
+    this.items.forEach(item => updaterFactory(item).update())
     return this.items;
   }
 }

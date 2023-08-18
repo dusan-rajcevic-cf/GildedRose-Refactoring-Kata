@@ -1,4 +1,4 @@
-const itemUpdater = require('../src/item_updater');
+const itemUpdater = require('../src/updater_factory');
 const Item = require('../src/Item');
 
 module.exports = function addAndUpdateItem(name, sellIn, quality) {
